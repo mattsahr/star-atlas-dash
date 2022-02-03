@@ -2,18 +2,17 @@
     import { onMount } from 'svelte';
     import { fade } from 'svelte/transition';
     import { sineOut } from 'svelte/easing';
-    import GalleryStore from '../../store/store';
-    import { getSizedPath } from '../../utility/helpers';
-    import { getDocHeight, getDocWidth } from '../../utility/dom';
-    import { dummyImage } from '../../utility/constants';
-    // import { zoomify, image_zoom_in, image_zoom_out, destroyZoomify } from './zoomify';
+    // import GalleryStore from '../../store/store';
+    // import { getSizedPath } from '../../utility/helpers';
+    import { getDocHeight, getDocWidth } from '../util/dom.js';
+    import { dummyImage } from '../util/constants.js';
     import WZoom from './wzoom/wheel-zoom';
 
-    import IconMagnify from '../icons/IconMagnify.svelte';
-    import IconDeMagnify from '../icons/IconDeMagnify.svelte';
-    import IconChevronLeft from '../icons/IconChevronLeft.svelte';
-    import IconChevronRight from '../icons/IconChevronRight.svelte';
-    import IconX from '../icons/IconX.svelte';
+    import IconMagnify from '../components/icons/IconMagnify.svelte';
+    import IconDeMagnify from '../components/icons/IconDeMagnify.svelte';
+    import IconChevronLeft from '../components/icons/IconChevronLeft.svelte';
+    import IconChevronRight from '../components/icons/IconChevronRight.svelte';
+    import IconX from '../components/icons/IconX.svelte';
 
     let loaded = false;
     let showFullDescription = true;
@@ -21,6 +20,19 @@
     // let scale = 1;
     let imgEl;
     let zoomer;
+
+
+
+    /*
+    export const getSizedPath = (size, fileName, url) => 
+        size === 'original' 
+            ? url 
+                ? url + '/++original/' + fileName
+                : '++original/' + fileName
+            : url
+                ? url + '/' + size + '/' + replaceExtension(fileName, '--' + size + '.jpg')
+                : size + '/' + replaceExtension(fileName, '--' + size + '.jpg');
+    */
 
     const srcSizes = [
         ['tiny', '400w'],

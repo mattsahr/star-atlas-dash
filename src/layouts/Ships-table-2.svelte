@@ -206,7 +206,7 @@
     .grid-wrapper {
         text-align: left;
         width: 100%;
-        max-width: 1200px;
+        max-width: 1390px;
         height: 1040px;
     }
 
