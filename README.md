@@ -128,7 +128,7 @@ npm run build
 surge public my-project.surge.sh
 ```
 
-# TODO LISt
+# TODO LIST
 
 - The individual ship page could use more trade data, like the APR rates.
 - The individual ship page could show the rest of the metadata, like height x width x length.
