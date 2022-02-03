@@ -2,6 +2,8 @@
 
 This is a svelte.js app that lists all the ships in the [Star Atlas](https://staratlas.com) game.
 
+[Demo App](https://mattsahr.github.io/star-atlas-dash/)
+
 It borrows or outright copies the features of these excellent dashboards.
 
 [Star Atlas Club](https://explorer.staratlas.club/ships/staking)  
