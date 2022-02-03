@@ -35,7 +35,7 @@ Is the Star Atlas websocket API truly open?  I mean, yes, it is, you can access 
 
 Svelte apps are pretty friendly for dropping into an existing web page.  
 
-You can drop the contents of the `/public/` folder somewhere on your site.  There's an `index.html` file in there, but you can see it's pretty tiny, and you can do the same stuff on your own page.  On your target page, there are some style files, a google font, and a js script to include.  Then on your page you need a div called "star-atlas-dashboard".
+You can drop the contents of the `/docs/` folder somewhere on your site.  There's an `index.html` file in there, but you can see it's pretty minimal.  You can include the relevant files on a page of your choice -- two style files, a google font, and a JS script.  Then on your target page you need a div called "star-atlas-dashboard".
 
 ```
 <head>
@@ -44,9 +44,9 @@ You can drop the contents of the `/public/` folder somewhere on your site.  Ther
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
 
     <link rel='stylesheet' href='global.css'>
-    <link rel='stylesheet' href='build/bundle.css'>
+    <link rel='stylesheet' href='star-atlas-dash/bundle.css'>
 
-    <script defer src='build/bundle.js'></script>
+    <script defer src='star-atlas-dash/bundle.js'></script>
 
 </head>
 <body>
@@ -54,7 +54,7 @@ You can drop the contents of the `/public/` folder somewhere on your site.  Ther
 </body>
 ```
 
-Dropping that code into an existing page, should allow the app to load.
+Dropping that code into an existing page should allow the app to load.
 
 ### Global stuff -- CSS and JS
 
