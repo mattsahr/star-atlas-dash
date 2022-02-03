@@ -15,7 +15,7 @@
 
     $: ship = $ships.find(next => next.id === message);
     $: imageName = ship.image ?  ship.image.split('/').pop() : '';
-    $: imageURL = medium[imageName] ? ('/images/med-720/' + imageName) : ship.image;
+    $: imageURL = medium[imageName] ? ('images/med-720/' + imageName) : ship.image;
     $: imageStyle = 'background-image: url("' + imageURL + '");';
     $: atlasMarket = ship.markets.find(next => next.quotePair === 'ATLAS');
     $: marketURL = 'https://play.staratlas.com/market/' + atlasMarket.id;

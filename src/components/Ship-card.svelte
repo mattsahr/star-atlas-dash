@@ -14,7 +14,7 @@
 
     $: imageName = ship.image ?  ship.image.split('/').pop() : '';
     $: imageURL = assets.images['thumb-220'][imageName] 
-        ? ('/images/thumb-220/' + imageName) 
+        ? ('images/thumb-220/' + imageName) 
         : ship.image;
     $: imageStyle = 'background-image: url("' + imageURL + '");';
 

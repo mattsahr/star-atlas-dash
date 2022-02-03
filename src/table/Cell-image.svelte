@@ -19,7 +19,7 @@
 
     $: imageName = val ? val.split('/').pop() : '';
     $: imageURL = assets.images['thumb-220'][imageName] 
-        ? ('/images/thumb-220/' + imageName) 
+        ? ('images/thumb-220/' + imageName) 
         : val;
     $: imageStyle = 'background-image: url("' + imageURL + '");';
 
