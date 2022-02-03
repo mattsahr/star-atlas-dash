@@ -1,0 +1,218 @@
+{
+    "VZUSOP": {
+        "earnDailyAtlas": 69.5131,
+        "burnDailyAtlas": 13.9578,
+        "hoursResupply": "3D-20H",
+        "timeResupply": 331233,
+        "aprVwap": 0.626701908141484,
+        "priceUsdc": 2100,
+        "aprUsdc": 0.49738246677895553
+    },
+    "PX5": {
+        "earnDailyAtlas": 6.2536,
+        "burnDailyAtlas": 1.5713,
+        "hoursResupply": "2D-2H",
+        "timeResupply": 180790,
+        "aprVwap": 0.6266402233224762,
+        "priceUsdc": 140.47,
+        "aprUsdc": 0.626700802198148
+    },
+    "OGKATP": {
+        "earnDailyAtlas": 360.6708,
+        "burnDailyAtlas": 77.1313,
+        "hoursResupply": "5D-1H",
+        "timeResupply": 437412,
+        "aprVwap": 0.6266868507397925,
+        "priceUsdc": 9800,
+        "aprUsdc": 0.5439660135175064
+    },
+    "PF4": {
+        "earnDailyAtlas": 118.984,
+        "burnDailyAtlas": 24.2877,
+        "hoursResupply": "4D-1H",
+        "timeResupply": 349960,
+        "aprVwap": 0.6268238010378809,
+        "priceUsdc": 2699,
+        "aprUsdc": 0.6596514571516712
+    },
+    "OPALJJ": {
+        "earnDailyAtlas": 12.242,
+        "burnDailyAtlas": 1.9457,
+        "hoursResupply": "2D-2H",
+        "timeResupply": 182140,
+        "aprVwap": 0.6266546636625789,
+        "priceUsdc": 262.03,
+        "aprUsdc": 0.7387798726612319
+    },
+    "VZUSAM": {
+        "earnDailyAtlas": 47.742,
+        "burnDailyAtlas": 7.7423,
+        "hoursResupply": "3D-9H",
+        "timeResupply": 291703,
+        "aprVwap": 0.6267006944528857,
+        "priceUsdc": 1080,
+        "aprUsdc": 0.6963341049476508
+    },
+    "FBLEGR": {
+        "earnDailyAtlas": 352.9829,
+        "burnDailyAtlas": 66.5222,
+        "hoursResupply": "5D-13H",
+        "timeResupply": 480520,
+        "aprVwap": 0.6260262059622947,
+        "priceUsdc": 8590,
+        "aprUsdc": 0.6269836682170846
+    },
+    "PR8": {
+        "earnDailyAtlas": 433.9984,
+        "burnDailyAtlas": 68.0048,
+        "hoursResupply": "4D-15H",
+        "timeResupply": 400420,
+        "aprVwap": 0.6196583837302728,
+        "priceUsdc": 10800,
+        "aprUsdc": 0.6371389428158959
+    },
+    "PC11": {
+        "earnDailyAtlas": 3462.0644,
+        "burnDailyAtlas": 513.0503,
+        "hoursResupply": "7D-2H",
+        "timeResupply": 612349,
+        "aprVwap": 0.615432880667079,
+        "priceUsdc": 83500,
+        "aprUsdc": 0.664010255986667
+    },
+    "OGKAJA": {
+        "earnDailyAtlas": 1145.2769,
+        "burnDailyAtlas": 145.9798,
+        "hoursResupply": "5D-0H",
+        "timeResupply": 434181,
+        "aprVwap": 0.607619126731125,
+        "priceUsdc": 31000,
+        "aprUsdc": 0.606062431387759
+    },
+    "PX6": {
+        "earnDailyAtlas": 38.562,
+        "burnDailyAtlas": 7.5627,
+        "hoursResupply": "2D-23H",
+        "timeResupply": 259097,
+        "aprVwap": 0.6266914653101691,
+        "priceUsdc": 792,
+        "aprUsdc": 0.73588770547785
+    },
+    "FBLETR": {
+        "earnDailyAtlas": 3980.1015,
+        "burnDailyAtlas": 506.8419,
+        "hoursResupply": "7D-18H",
+        "timeResupply": 672605,
+        "aprVwap": 0.6204396672392568,
+        "priceUsdc": 123999,
+        "aprUsdc": 0.5266274322932586
+    },
+    "CHI": {
+        "earnDailyAtlas": 40.1198,
+        "burnDailyAtlas": 6.9534,
+        "hoursResupply": "3D-1H",
+        "timeResupply": 265716,
+        "aprVwap": 0.6267002212605963,
+        "priceUsdc": 893.01,
+        "aprUsdc": 0.6982751818616738
+    },
+    "FBLBEA": {
+        "earnDailyAtlas": 36.9948,
+        "burnDailyAtlas": 7.1619,
+        "hoursResupply": "3D-4H",
+        "timeResupply": 277061,
+        "aprVwap": 0.626694841082174,
+        "priceUsdc": 740,
+        "aprUsdc": 0.7579620037412781
+    },
+    "CALEV": {
+        "earnDailyAtlas": 106.5649,
+        "burnDailyAtlas": 20.4952,
+        "hoursResupply": "3D-16H",
+        "timeResupply": 318199,
+        "aprVwap": 0.6221235907415691,
+        "priceUsdc": 2570,
+        "aprUsdc": 0.6296532160739745
+    },
+    "FBLEBO": {
+        "earnDailyAtlas": 1374.5989,
+        "burnDailyAtlas": 168.496,
+        "hoursResupply": "6D-16H",
+        "timeResupply": 576560,
+        "aprVwap": 0.6201814886216486,
+        "priceUsdc": 32001.15,
+        "aprUsdc": 0.7086033447767643
+    },
+    "CALG": {
+        "earnDailyAtlas": 1174.468,
+        "burnDailyAtlas": 145.0294,
+        "hoursResupply": "6D-10H",
+        "timeResupply": 555360,
+        "aprVwap": 0.6266897694073116,
+        "priceUsdc": 31000.01,
+        "aprUsdc": 0.6243426975210071
+    },
+    "OM": {
+        "earnDailyAtlas": 111.6444,
+        "burnDailyAtlas": 18.5539,
+        "hoursResupply": "3D-8H",
+        "timeResupply": 290309,
+        "aprVwap": 0.6234789877679626,
+        "priceUsdc": 2775.01,
+        "aprUsdc": 0.6307030170106697
+    },
+    "FBLBPL": {
+        "earnDailyAtlas": 138.9424,
+        "burnDailyAtlas": 21.8387,
+        "hoursResupply": "3D-12H",
+        "timeResupply": 305128,
+        "aprVwap": 0.6267025099100378,
+        "priceUsdc": 3439,
+        "aprUsdc": 0.640210600502385
+    },
+    "CALCH": {
+        "earnDailyAtlas": 146.8696,
+        "burnDailyAtlas": 20.6486,
+        "hoursResupply": "4D-5H",
+        "timeResupply": 364351,
+        "aprVwap": 0.6266989473494626,
+        "priceUsdc": 4075,
+        "aprUsdc": 0.5823558316474352
+    },
+    "PX4": {
+        "earnDailyAtlas": 0.966,
+        "burnDailyAtlas": 0.2109,
+        "hoursResupply": "1D-1H",
+        "timeResupply": 90157,
+        "aprVwap": 0.626413990385893,
+        "priceUsdc": 19.3,
+        "aprUsdc": 0.7354931622731055
+    },
+    "OPALJ": {
+        "earnDailyAtlas": 0.851,
+        "burnDailyAtlas": 0.1845,
+        "hoursResupply": "0D-23H",
+        "timeResupply": 86400,
+        "aprVwap": 0.6265625930329186,
+        "priceUsdc": 17.22,
+        "aprUsdc": 0.727714974486549
+    },
+    "PC9": {
+        "earnDailyAtlas": 1210.4476,
+        "burnDailyAtlas": 170.565,
+        "hoursResupply": "6D-1H",
+        "timeResupply": 524777,
+        "aprVwap": 0.6142470595154569,
+        "priceUsdc": 34000,
+        "aprUsdc": 0.5750290943752526
+    },
+    "TUFAFE": {
+        "earnDailyAtlas": 33.9492,
+        "burnDailyAtlas": 7.4495,
+        "hoursResupply": "4D-8H",
+        "timeResupply": 377091,
+        "aprVwap": 0.6266977938064007,
+        "priceUsdc": 689.99,
+        "aprUsdc": 0.7220753142452623
+    }
+}

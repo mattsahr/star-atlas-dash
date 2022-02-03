@@ -1,0 +1,54 @@
+{
+    "rules": {
+        "comma-dangle": [2, "never"],
+        "dot-location": [2, "property"],
+        "eqeqeq": 2,
+        "indent": 0,
+        "linebreak-style": 0,
+        "no-console": 0,
+        "no-implicit-coercion": 2,
+        "no-loop-func": 2,
+        "no-new-wrappers": 2,
+        "no-octal": 2,
+        "no-param-reassign": [1, {"props": false}],
+        "no-redeclare": 2,
+        "no-regex-spaces": 0,
+        "no-unused-vars": 2,
+        "no-undef": 2,
+        "radix": 2,
+        "semi": [ 2, "always" ],
+        "guard-for-in": 2,
+        "prefer-const": 1,
+        "prefer-arrow-callback": 1
+    },
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: 'module'
+    },
+    "globals": {
+        "console": true,
+        "DEBUG": true,
+        "module": true,
+        "process": true,
+        "require": true,
+        "window": true,
+        "fetch": true,
+        "XMLHttpRequest": true,
+        "document": "writable",
+        "IntersectionObserver": true,
+        "WebSocket": true
+    },
+    plugins: [
+        'svelte3'
+    ],
+    overrides: [
+        {
+          files: ['*.svelte'],
+          processor: 'svelte3/svelte3'
+        }
+  ]
+}
