@@ -2,11 +2,8 @@
     import { onMount } from 'svelte';
     import { fade } from 'svelte/transition';
     import { sineOut } from 'svelte/easing';
-    // import GalleryStore from '../../store/store';
-    // import { getSizedPath } from '../../utility/helpers';
-    import { getDocHeight, getDocWidth } from '../util/dom.js';
-    import { dummyImage } from '../util/constants.js';
     import WZoom from './wzoom/wheel-zoom';
+    import { getDocHeight, getDocWidth } from '../util/dom.js';
 
     import IconMagnify from '../components/icons/IconMagnify.svelte';
     import IconDeMagnify from '../components/icons/IconDeMagnify.svelte';
@@ -14,73 +11,102 @@
     import IconChevronRight from '../components/icons/IconChevronRight.svelte';
     import IconX from '../components/icons/IconX.svelte';
 
+    import KeyCapture from '../components/Key-capture.svelte';
+    import { gallery } from  '../data/app-store';
+
+    const dummyArray = [];
+
     let loaded = false;
-    let showFullDescription = true;
     let slideDirection = '';
-    // let scale = 1;
     let imgEl;
     let zoomer;
+    let arrived = true;
 
+    let foundWidth = 0;
+    let foundHeight = 0;
 
+    // let GalleryStore = {};
+    // gallery.subscribe(status => { GalleryStore = status; });
 
-    /*
-    export const getSizedPath = (size, fileName, url) => 
-        size === 'original' 
-            ? url 
-                ? url + '/++original/' + fileName
-                : '++original/' + fileName
-            : url
-                ? url + '/' + size + '/' + replaceExtension(fileName, '--' + size + '.jpg')
-                : size + '/' + replaceExtension(fileName, '--' + size + '.jpg');
-    */
+    const composeImageURL = (() => {
+        const prefix = 'https://play.staratlas.com/_next/image?url=';
+        const suffix = '&w=1920&q=75';
+        return address => prefix + encodeURIComponent(address) + suffix;
+    })();
 
-    const srcSizes = [
-        ['tiny', '400w'],
-        ['small', '600w'],
-        ['medium', '1180w'],
-        ['large', '1700w']
-    ];
+    const updateGallery = (field, value) => {
+        gallery.update(gal => ({...gal, [field]: value }));
+    };
 
-    const getSrcSizes = (fileName, url) => ([size, width]) => 
-        getSizedPath(size, fileName, url) + ' ' + width;
+    const closeLightbox = () => {
+        console.log('CLOSE LIGHTBOX');
+        updateGallery('ship', null);
+        // gallery.update(gal =({...gal}))
+
+        // modalStatus.set(null);
+
+        // // ALLOW TIME FOR THE MODAL TO FADE/CLOSE, THEN RETURN TO FEATURE PAGE
+        // setTimeout(() => {
+        //     console.log('CLOSED?', $modalStatus);
+        //     modalStatus.set(bind(FeatureShip, { message: ship. }));
+        // }, 510);
+    };
 
     const closeMe = () => { 
         slideDirection = '';
         loaded = false;
-        showFullDescription = true;
+        // showFullDescription = true;
         // scale = 1;
         if (zoomer) { 
             zoomer.destroy(); 
             zoomer = null;
         }
-        GalleryStore.closeLightbox(); 
+        closeLightbox(); 
     };
-
 
     const onImageLoad = () => {
-        console.log('lightbox loaded?', loaded);
-        loaded = true;
-        if (!zoomer) {
-            const zoomProps = {
-                minScale: 1,
-                maxScale: 5,
-                speed: 6,
-                dragScrollableOptions: {
-                    smoothExtinction: true
-                },
-                zoomOnClick: false
-                // width: workingWidth,
-                // height: workingHeight
-            };
 
-            zoomer = WZoom.create(imgEl, zoomProps);
+        const getZoomer = () => zoomer;
 
-            console.log('zoomer!', zoomer);
-        }
+        const setLoaded = (newLoaded) => { loaded = newLoaded; };
+        const setZoomer =(newZoomer) => zoomer = newZoomer;
+
+        const setHeight = newHeight => { foundHeight = newHeight; };
+        const setWidth = newWidth => { foundWidth = newWidth; };
+
+        return function () {
+
+            const zoomer = getZoomer();
+
+            // console.log('onImageLoad zoomer!', zoomer);
+            // console.log('onloaded THIS', this.width, this.height, this);
+
+            setHeight(this.height);
+            setWidth(this.width);
+
+            setLoaded(true);
+            // loaded = true;
+
+            if (!zoomer) {
+                const zoomProps = {
+                    minScale: 1,
+                    maxScale: 5,
+                    speed: 6,
+                    dragScrollableOptions: {
+                        smoothExtinction: true
+                    },
+                    zoomOnClick: false
+                    // width: workingWidth,
+                    // height: workingHeight
+                };
+
+                setZoomer(WZoom.create(imgEl, zoomProps));
+            }
+        };
     };
 
-    const fadeSlow = { delay: 200, duration: 600 };
-    const fadeQuick = { delay: 100, duration: 300 };
+    // const fadeSlow = { delay: 200, duration: 600 };
+    // const fadeQuick = { delay: 100, duration: 300 };
 
     const composeScale = (height, width) => {
         const ratio = height / width;
@@ -92,8 +118,7 @@
             'height:' + (getDocWidth() * ratio).toFixed(1) + 'px;';
     };
 
-    const calcHeight = data => {
-        const { width, height } = data;
+    const calcHeight = (width, height) => {
         const ratio = height / width;
         if (ratio > 1) {
             return getDocHeight() + 'px';
@@ -110,37 +135,40 @@
         return getDocWidth() + 'px';
     };
 
+    $: ship = $gallery.ship;
+    $: active = Boolean(ship);
+    $: imageList = active ? [ ship.image, ...ship.media.gallery ] : dummyArray;
+    $: currentIndex = $gallery.currentIndex || 0;
+    $: source = active ? imageList[currentIndex] : '';
+    $: fileName = source ? source.split('/').pop() : '';
+    $: src = source ? composeImageURL(source) : '';
 
-    $: active = $GalleryStore.active;
-    $: current = $GalleryStore.current;
-    $: arrived = $GalleryStore.active;
-    $: currentIndex = $GalleryStore.images.findIndex(next => next.fileName === current);
-    $: imgData = $GalleryStore.images[currentIndex];
-    $: data = imgData || dummyImage;
-    $: fileName = data.fileName;
-    $: sourceURL = data.url;
-    $: width = data.width;
-    $: height = data.height;
+    $: width = foundWidth || 1920;
+    $: height = foundHeight || 1200;
+
     $: ratio = height / width;
-    $: workingHeight = calcHeight(data);
-    $: workingWidth = calcWidth(data);
+    $: workingHeight = calcHeight(width, height);
+    $: workingWidth = calcWidth(width, height);
     $: photoClass = 'photo ' + (ratio > 1 ? 'tall' : ratio < 1 ? 'wide' : 'square');
-    $: alt = data.title || 'image';
-    $: src = active ? getSizedPath('small', fileName, sourceURL) : '';
-    $: srcset = !active 
-        ? ''
-        : Boolean(zoomer)
-            ? getSizedPath('large', fileName, sourceURL) + ' 300w'
-            : srcSizes.map(getSrcSizes(fileName, sourceURL)).join(',');
-    $: svgSequence = data.svgSequence;
-    $: svgHeight = data.svgHeight;
-    $: svgWidth = data.svgWidth;
+    $: alt = fileName || 'image';
     $: lightboxClass = 'lightbox' + (active ? ' active': '');
     $: photoSvgClass = 'photo-svg' + (loaded ? ' image-loaded': '');
     $: photoScale = composeScale(height, width);
 
+    $: {
+        console.groupCollapsed('shipId', (ship && ship.symbol), (ship && ship.id), 
+            '  IMG ' + currentIndex + '   width ' + width + '   height' + height
+        );
+        console.log('SRC ' + src);
+        console.log('lightbox', imageList);
+        console.log('fileName', fileName);
+        console.groupEnd();
+    }
+
     const reset = () => {
+        console.log('RESET!');
         loaded = false;
+
     };
 
     const zoomIn = () => {
@@ -190,13 +218,12 @@
         }
 
         arrived = false;
-        const nextIndex = currentIndex === $GalleryStore.images.length - 1 ? 0 : currentIndex + 1;
-        const nextFileName = $GalleryStore.images[nextIndex].fileName;
-
+        const nextIndex = (currentIndex === imageList.length - 1) ? 0 : (currentIndex + 1);
         setTimeout(() => {
             loaded = false;
-            GalleryStore.viewLightbox(nextFileName);
-            setTimeout(() => { if(zoomer) { zoomer.prepare(); }  }, 400);
+            //  gallery.update(gal => ({ ...gal, currentIndex:nextIndex}));
+            updateGallery('currentIndex', nextIndex);
+            setTimeout(() => { if(zoomer) { zoomer.prepare(); } arrived = true;  }, 400);
         }, 140);
 
 
@@ -211,22 +238,16 @@
         }
 
         arrived = false;
-        const priorIndex = currentIndex === 0 ? $GalleryStore.images.length - 1 : currentIndex - 1;
-        const priorFileName = $GalleryStore.images[priorIndex].fileName;
+        const priorIndex = currentIndex === 0 ? (imageList.length - 1) : (currentIndex - 1);
 
         setTimeout(() => {
             loaded = false;
-            GalleryStore.viewLightbox(priorFileName);
-            setTimeout(() => { if(zoomer) { zoomer.prepare(); }  }, 400);
+            // gallery.update(gal => ({ ...gal, currentIndex: priorIndex}));
+            updateGallery('currentIndex', priorIndex);
+            setTimeout(() => { if(zoomer) { zoomer.prepare(); } arrived = true; }, 400);
         }, 140);
 
     };
-
-    const toggleDescription = () => {
-        showFullDescription = !showFullDescription;
-    };
-
-    const composeFill = color => color[0] === '#' ? color : 'rgb(' + color + ')';
 
     onMount(reset);
 
@@ -248,57 +269,24 @@
     {#if arrived}
     <div class="photo-frame" in:slideIn out:slideOut>
         <div class="photo" style={photoScale}>
-
-            {#if !loaded}
-                <div class={photoSvgClass} out:fade={fadeSlow} >
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%"
-                        viewbox={'0 0 ' + svgWidth + ' ' + svgHeight} >
-                        {#if !loaded}
-                            <rect x="0" y="0" out:fade={fadeQuick}
-                                width={svgWidth} height={svgHeight} fill="#f0f0f0" />
-                        {/if}
-                        <g>
-                            {#each svgSequence as [ fill, opacity, cx, cy, rx, ry ] }
-                                <ellipse fill={composeFill(fill)} fill-opacity={opacity} {cx} {cy} {rx} {ry} />
-                            {/each}
-                        </g>
-                    </svg>
-                </div>
-            {/if} <!-- end if loaded -->
-
-            <img on:load={onImageLoad} {src} bind:this={imgEl} {srcset} {alt} />
+            <img on:load={onImageLoad()} {src} bind:this={imgEl} {alt} />
         </div>
     </div>
-    {/if} <!-- end if arrived -->
+    {/if}
 
-    {#each [imgData] as count (imgData) }
-        <div in:fade out:fade class={'description-panel' + (showFullDescription ? '' : ' collapsed')}>
+    {#each imageList as imageSource }
+        <div in:fade out:fade class="description-panel collapsed">
             <div class="description-column">
-
-                <div class="description-expand-toggle" on:click={toggleDescription}>
-                    {#if showFullDescription}
-                        <IconChevronRight />
-                    {:else}
-                        <IconChevronLeft />
-                    {/if}
-                </div>
-
-                <div class="description">{@html imgData.description}</div>
-
-                {#if $GalleryStore.allowDownloads}
-                    <a class="download-button" 
-                        href={'++original/' + imgData.fileName} 
-                        download={imgData.fileName} >
-                            Download
-                            <IconChevronRight />
-                    </a>
-                {/if}
-
+                <a class="download-button" 
+                    href={composeImageURL(imageSource)} download={imageSource.split('/').pop()} >
+                    Download
+                    <IconChevronRight />
+                </a>
             </div>
         </div>
     {/each}
-
 </div>
+<KeyCapture onEscape={closeMe} />
 {/if}
 
 
@@ -306,7 +294,7 @@
 <style>
     .lightbox {
         position: fixed;
-        z-index: 400;
+        z-index: 1020;
         top: 0;
         right: 0;
         bottom: 0;
@@ -428,20 +416,6 @@
         z-index: 40;
         cursor: pointer;
     }
-
-    .prior svg {
-        width: 60px;
-        height: 80px;
-        margin: 0;
-        cursor: pointer;
-    }
-    .next svg {
-        width: 60px;
-        height: 80px;
-        margin: 0 -16px 0 16px;
-        cursor: pointer;
-    }
-
 
     .prior:hover,
     .next:hover {

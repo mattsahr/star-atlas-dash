@@ -62,7 +62,7 @@ function WZoom(selector, options = {}) {
         // for window take just the parent
         this.window.$element = this.content.$element.parentNode;
 
-        console.log('this.window', this.window);
+        // console.log('this.window', this.window);
 
         if (this.options.type === 'image') {
             let initAlreadyDone = false;

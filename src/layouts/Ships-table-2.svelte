@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { ASCEND, DESCEND } from '../util/constants.js';
+    import { getDocHeight, getDocWidth } from '../util/dom.js';
     import DataGrid from '../lib/svelte-data-grid/svelte-data-grid.svelte';
     import TableHeader from '../table/Table-header.svelte';
     import TableHeaderUSDC from '../table/Table-header-usdc.svelte';
@@ -168,12 +169,17 @@
         };
     })(); 
 
+    const verticalPadding = 156;
+
     $: gridColumns = composeColumns(width, sortData);
     $: gridData = composeShipData($ships, gridColumns, sortData, $tokenPrices);
+    $: tableHeight = Math.min(
+        (getDocHeight() - verticalPadding), 
+        ((($ships.length || 1) * 53) + 56)
+       );
+    $: gridWrapStyle = 'height: ' + tableHeight + 'px;';
     // $: { 
-    //     console.log('gridColumns', gridColumns);
-    //     console.log('gridData', gridData);
-    //     console.log('width', width, '   height', height);
+    //     console.log('width', width, '   height', height, '  tableHeight', tableHeight);
     //    }
 
     onMount(() => {
@@ -182,16 +188,17 @@
 
 </script>
 
-<div class="grid-frame">
-    <div class="grid-wrapper" bind:clientWidth={width} bind:clientHeight={height}>
-        <DataGrid 
-            headerHeight={44}
-            rowHeight={52}
-            rows={gridData} 
-            columns={gridColumns} 
-            fixColumn={1}
-            allowColumnReordering={false} 
-            on:columnOrderUpdated={saveNewColumnOrder} />
+<div class="grid-frame" style={gridWrapStyle}>
+    <div class="grid-wrapper" 
+        bind:clientWidth={width} bind:clientHeight={height}>
+            <DataGrid 
+                headerHeight={44}
+                rowHeight={52}
+                rows={gridData} 
+                columns={gridColumns} 
+                fixColumn={1}
+                allowColumnReordering={false} 
+                on:columnOrderUpdated={saveNewColumnOrder} />
     </div>
 </div>
 
@@ -207,7 +214,6 @@
         text-align: left;
         width: 100%;
         max-width: 1390px;
-        height: 1040px;
     }
 
 </style>

@@ -7,6 +7,7 @@
 	background-color:#f0f0f0;
 	color:#303030;
 	border-radius:2px;
+    font-family: 'Work Sans', sans-serif;
 	border: solid 1px #a0a0a0;
 	font-size:14px;
 	padding: 0 8px;
@@ -70,19 +71,6 @@
 }
 
 
-.modal-bg {
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-    background: rgba(0,0,0,0.3);
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .svelte-app-main {
     color: #333;
     box-sizing: border-box;
@@ -96,6 +84,19 @@
 .svelte-app-main div, 
 .svelte-app-main span {
     box-sizing: border-box;
+}
+
+.svelte-app-main .modal-bg {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 1010; /* 10 less than .lightbox */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .svelte-app-main .modal-window-wrap {
@@ -187,4 +188,19 @@
 
 .svelte-app-main .cell-highlight.sorted.odd:hover {
     background-color: rgb(221, 221, 221);
+}
+
+
+.svelte-app-main .lightbox .prior svg {
+    width: 60px;
+    height: 80px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.svelte-app-main .lightbox .next svg {
+    width: 60px;
+    height: 80px;
+    margin: 0 -16px 0 16px;
+    cursor: pointer;
 }

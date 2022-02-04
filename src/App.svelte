@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
 	import Modal from 'svelte-simple-modal';
+    import Lightbox from './lightbox/Lightbox.svelte';
     import { modalStatus } from './data/app-store.js';
     import { fetchNFTs } from './data/fetch-sa.js';
     import HeaderBar from './layouts/Header-bar.svelte';
@@ -40,6 +41,7 @@
 				<ShipsTable />
 			{/if}
 	</Modal>
+	<Lightbox />
 </main>
 
 <style>

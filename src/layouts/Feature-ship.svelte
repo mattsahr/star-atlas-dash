@@ -1,7 +1,8 @@
 <script>
     import { onMount } from 'svelte';
-    import { ships } from '../data/app-store.js';
+    import { gallery, ships } from '../data/app-store.js';
     import { assets } from '../util/constants.js';
+    import FaExpand from 'svelte-icons/fa/FaExpand.svelte';
     import { getTrades } from '../data/fetch-market';
     import PriceAskBid from '../components/Price-ask-bid.svelte';
     import MetaTags from '../components/Meta-tags.svelte';
@@ -12,6 +13,13 @@
     const medium = assets.images['med-720'];
     export let message = 'Ship!';
     let w;
+
+    const openGallery = () => {
+        gallery.update(gal => ({ 
+            ...gal, 
+            ship
+        }));
+    };
 
     $: ship = $ships.find(next => next.id === message);
     $: imageName = ship.image ?  ship.image.split('/').pop() : '';
@@ -24,14 +32,27 @@
     $: chartHeight = Math.round(chartWidth / 1.6);
     // $: { console.log('Featured Ship', ship); }
 
-    const pingTrades = () => { getTrades(ship); };
-    onMount(pingTrades); 
+    const resetGallery = () => {
+        gallery.update(gal => ({ ...gal, currentIndex: 0}));
+    };
+
+    onMount(() => { 
+        resetGallery();
+        getTrades(ship); 
+    }); 
 
 </script>
 
 {#if ship}
     <div class="feature-ship">
-        <div class="image-box"><div class="image" style={imageStyle}></div></div>
+        <div class="image-box" on:click={openGallery}>
+            <div class="image" style={imageStyle}>
+                <div class="icon-message">
+                    <div class="message">Gallery</div>
+                    <div class="icon"><FaExpand /></div>
+                </div>
+            </div>
+        </div>
         <div class="title-box">
             <div class="ship-title-box">
                 <div class="ship-title-text">{ship.name}</div>
@@ -108,6 +129,7 @@
     }
 
     .image {
+        position: relative;
         width:  100%;
         max-width: 720px;
         padding-bottom: 40%;
@@ -115,6 +137,44 @@
         background-position: center;
         border-radius: 4px;
         border: solid 1px rgb(200, 190, 220);
+        cursor: pointer;
+    }
+
+    .icon-message {
+        display: flex;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 400ms;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        left: 0;
+        justify-content: flex-end;
+        align-items: flex-end;
+        background: rgb(0,0,0);
+        background: linear-gradient(147deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0.4) 100%);
+        padding: 12px 22px 18px 0;
+        color: rgb(230, 230, 230);
+    }
+
+    .icon-message .message {
+        font-size: 15px;
+        text-transform: uppercase;
+        padding: 2px 12px 1px 0;
+        line-height: 1;
+    }
+
+    .icon-message .icon {
+        height: 19px;
+        width: 19px;
+    }
+
+    .image:hover {
+        border-color: rgb(0, 0, 0);
+    }
+
+    .image:hover .icon-message {
+        opacity: 1;
     }
 
     .content-box {
