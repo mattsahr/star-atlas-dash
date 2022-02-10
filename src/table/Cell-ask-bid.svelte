@@ -5,6 +5,7 @@
     export let column;
     export let rowNumber;
     export let row;
+    export let customClass;
 
     $: askATLAS = row.data.askATLAS;
     $: bidATLAS = row.data.bidATLAS;
@@ -17,6 +18,7 @@
     $: odd = Boolean(rowNumber % 2);
     $: cellClass = 'ask-bid-grid ' + 
         (odd ?  'odd' : 'even') + 
+        (customClass ? (' ' + customClass) : '') + 
         (column.sortDirection ? ' sorted' : '') + 
         ((column.currency === 'usdc') ? ' usdc' : '');
 
@@ -50,12 +52,14 @@
         <div class='ask-row'>
             <div class='ask-bid-cell primary'>
                 <div class="market-position">Ask</div>
+                {#if customClass}<div class="currency-mark">$</div>{/if}
                 <div class="price-number">{formatUSDC(askUSDC)}</div>
             </div>
         </div>
         <div class='bid-row'>
             <div class='ask-bid-cell primary'>
                 <div class="market-position">Bid</div>
+                {#if customClass}<div class="currency-mark">$</div>{/if}
                 <div class="price-number">{formatUSDC(bidUSDC)}</div>
             </div>
         </div>
@@ -68,6 +72,14 @@
         line-height: 15px;
         padding: 8px 0 0 0;
         height: 60px;
+    }
+
+    .ask-bid-grid.ship-card {
+        padding: 12px 0 0 0;
+        border: solid rgb(200, 200, 200);
+        border-width: 0 0 1px 0;
+        margin: 0px 0 0 14px;
+        height: 58px;
     }
 
     .ask-row {
@@ -90,10 +102,17 @@
     .ask-bid-cell.primary {   width: 52%; }
     .ask-bid-cell.converted { width: 48%; }
 
+    .ship-card .ask-bid-cell.primary {   
+        width: 48%; 
+    }
+    .ship-card .ask-bid-cell.converted { 
+        width: 52%;
+        padding-right: 9px 
+    }
 
     .ask-bid-cell.primary {
         justify-content: space-between;
-        pading: 0 6px 0 6px;
+        padding: 0 6px 0 6px;
     }
 
     .ask-bid-cell.converted {
@@ -102,7 +121,7 @@
     }
 
     .market-position {
-        margin: 0 0 0 0;
+        margin: 1px 0 0 0;
         text-transform: uppercase;
         color: rgb(170, 180, 180);
         font-size: 0.9em;
@@ -143,6 +162,11 @@
     .usdc .currency-mark {
         left: inherit;
         right:  10px;
+    }
+
+    .ship-card.usdc .currency-mark {
+        left: 101px;
+        right: inherit;
     }
 
     /* ========================================== */

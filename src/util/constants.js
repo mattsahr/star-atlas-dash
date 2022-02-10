@@ -59,6 +59,9 @@ export const assets = {
 
 export const ASCEND = 'ASCEND';
 export const DESCEND = 'DESCEND';
+export const RESPONSIVE = {
+    MIN_WIDTH: 750
+};
 
 export const CUSTOM_SORTS = {
    'rarity': {

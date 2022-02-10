@@ -25,7 +25,9 @@
 
 </script>
 
-<div class={cellClass} on:click={clickHandler}><div class="image" style={imageStyle}></div></div>
+<div class={cellClass} on:click={clickHandler}>
+    <div class="image" style={imageStyle}></div>
+</div>
 
 <style>
     .cell-image {

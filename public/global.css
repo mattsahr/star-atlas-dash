@@ -70,12 +70,15 @@
     margin: -1px 0 0 4px;
 }
 
+body.star-atlas-dash {
+    background: #faf9f8;
+}
 
 .svelte-app-main {
     color: #333;
     box-sizing: border-box;
     font-family: 'Work Sans', sans-serif;
-    padding: 0 1em 1em 1em;
+    padding: 0 0 16px 0;
     margin: 0 auto;
     background-color: #faf9f8;
     color: #333;
@@ -190,6 +193,9 @@
     background-color: rgb(221, 221, 221);
 }
 
+.svelte-app-main .cell-highlight:hover .title {
+    color: rgb(20, 150, 240);
+}
 
 .svelte-app-main .lightbox .prior svg {
     width: 60px;

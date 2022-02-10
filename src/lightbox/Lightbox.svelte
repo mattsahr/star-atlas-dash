@@ -25,9 +25,6 @@
     let foundWidth = 0;
     let foundHeight = 0;
 
-    // let GalleryStore = {};
-    // gallery.subscribe(status => { GalleryStore = status; });
-
     const composeImageURL = (() => {
         const prefix = 'https://play.staratlas.com/_next/image?url=';
         const suffix = '&w=1920&q=75';
@@ -39,17 +36,7 @@
     };
 
     const closeLightbox = () => {
-        console.log('CLOSE LIGHTBOX');
         updateGallery('ship', null);
-        // gallery.update(gal =({...gal}))
-
-        // modalStatus.set(null);
-
-        // // ALLOW TIME FOR THE MODAL TO FADE/CLOSE, THEN RETURN TO FEATURE PAGE
-        // setTimeout(() => {
-        //     console.log('CLOSED?', $modalStatus);
-        //     modalStatus.set(bind(FeatureShip, { message: ship. }));
-        // }, 510);
     };
 
     const closeMe = () => { 
@@ -78,14 +65,9 @@
 
             const zoomer = getZoomer();
 
-            // console.log('onImageLoad zoomer!', zoomer);
-            // console.log('onloaded THIS', this.width, this.height, this);
-
             setHeight(this.height);
             setWidth(this.width);
-
             setLoaded(true);
-            // loaded = true;
 
             if (!zoomer) {
                 const zoomProps = {
@@ -96,17 +78,12 @@
                         smoothExtinction: true
                     },
                     zoomOnClick: false
-                    // width: workingWidth,
-                    // height: workingHeight
                 };
 
                 setZoomer(WZoom.create(imgEl, zoomProps));
             }
         };
     };
-
-    // const fadeSlow = { delay: 200, duration: 600 };
-    // const fadeQuick = { delay: 100, duration: 300 };
 
     const composeScale = (height, width) => {
         const ratio = height / width;
@@ -155,6 +132,7 @@
     $: photoSvgClass = 'photo-svg' + (loaded ? ' image-loaded': '');
     $: photoScale = composeScale(height, width);
 
+    /*
     $: {
         console.groupCollapsed('shipId', (ship && ship.symbol), (ship && ship.id), 
             '  IMG ' + currentIndex + '   width ' + width + '   height' + height
@@ -164,23 +142,18 @@
         console.log('fileName', fileName);
         console.groupEnd();
     }
+    */
 
     const reset = () => {
-        console.log('RESET!');
         loaded = false;
-
     };
 
     const zoomIn = () => {
         if (zoomer) { zoomer.zoomUp(); }
-        // scale = (scale * 1.33 >= 5 ? 5 : scale * 1.33);
-        // photoScale = composeScale(height, width, scale);
     };
 
     const zoomOut = () => {
         if (zoomer) { zoomer.zoomDown(); }
-        // scale = (scale * 0.7 <= 1 ? 1 : scale * 0.7);
-        // photoScale = composeScale(height, width, scale);
     };
 
     function slideOut(node, { delay = 0, duration = 150 }) {
@@ -221,7 +194,6 @@
         const nextIndex = (currentIndex === imageList.length - 1) ? 0 : (currentIndex + 1);
         setTimeout(() => {
             loaded = false;
-            //  gallery.update(gal => ({ ...gal, currentIndex:nextIndex}));
             updateGallery('currentIndex', nextIndex);
             setTimeout(() => { if(zoomer) { zoomer.prepare(); } arrived = true;  }, 400);
         }, 140);
@@ -242,7 +214,6 @@
 
         setTimeout(() => {
             loaded = false;
-            // gallery.update(gal => ({ ...gal, currentIndex: priorIndex}));
             updateGallery('currentIndex', priorIndex);
             setTimeout(() => { if(zoomer) { zoomer.prepare(); } arrived = true; }, 400);
         }, 140);
@@ -324,7 +295,6 @@
         width: 100%;
     }
 
-/*
     .photo.wide img {
         width: 100%;
         height: auto;
@@ -340,7 +310,7 @@
         width: auto;
         height: 100%;   
     }
-*/
+
     .photo-svg {
         display: block;
         position: absolute;

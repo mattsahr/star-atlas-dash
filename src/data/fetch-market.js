@@ -271,6 +271,25 @@ export const updateTrades = (() => {
 
 let ws = null;
 
+/*
+const getFTXTrades = (() => {
+
+    const handleResults = wsResponse => {
+        console.log('results', wsResponse);
+        const results = JSON.parse(wsResponse.data);
+        console.log('results!', results);
+    };
+
+    return () => {
+        ftx.init(handleResults);
+
+        setTimeout(() => {
+            ftx.fetchPrices('ATLAS/USD');
+        }, 5000);
+        
+    };
+})();
+*/
 const getDexlabTrades = (() => {
 
     const getDexURL = address => 'https://open-api.dexlab.space/v1/trades/' +
@@ -337,6 +356,7 @@ export const getTrades = (() => {
     };
 })();
 
+
 export const getPrices = () => {
 
     // DONT INITIALIZE MORE THAN ONCE
@@ -347,11 +367,13 @@ export const getPrices = () => {
         return;
     }
 
+    //getFTXTrades();
+
     updateTokenPrices();
     setInterval(updateTokenPrices, oneMinute);
 
     ws = new WebSocket('wss://serum-vial.staratlas.cloud/v1/ws');
-    ws.onmessage = updatePrices; // updatePrices.bind(this)
+    ws.onmessage = updatePrices;
 
     ws.onopen = () => {
         // subscribe both to trades and level2 real-time channels

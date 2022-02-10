@@ -59,6 +59,7 @@
         border: solid rgb(200, 200, 200);
         border-width: 1px 0 1px 0;
         background: rgb(246, 244, 243);
+        overflow: hidden;
     }
 
     .ticker-column {
@@ -66,14 +67,14 @@
         max-width: 1200px;
         display: flex;
         justify-content: flex-start;
-        padding: 0 0 0 36px;
+        padding: 0 0 0 12px;
     }
 
     .ticker-group {
         display: flex;
         justify-content: center;
         margin: 0 16px 0 0;
-        padding: 0 16px 0 0;
+        padding: 0;
     }
 
     /*

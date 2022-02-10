@@ -41,6 +41,12 @@
         line-height: 15px;
     }
 
+    .percent-display.ship-card.table,
+    .percent-display.ship-card.simple-table {
+        height: 14px;
+        padding: 2px 0 0 0;
+    }
+
     .percent-display.ticker {
         height: 14px;
         padding: 1px 0 0 0;
