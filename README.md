@@ -52,17 +52,36 @@ You can drop the contents of the `/docs/` folder somewhere on your site.  There'
 
 </head>
 <body>
-    <div id="star-atlas-dashboard"></div>
+    <div id="star-atlas-dashboard" data-height-offset="0"></div>
 </body>
 ```
 
 Dropping that code into an existing page should allow the app to load.
 
-### Global stuff -- CSS and JS
+### Global stuff -- CSS
 
 There is some amount of global CSS in `/public/global.css`  The project uses a library called 'tippy.js' for tooltips.  It's styles are in there.  Everything else in global CSS is scoped under a `.svelte-app-main` class.
 
-The project also sometimes loads https://s3.tradingview.com/tv.js which mounts a global JS function at `window.TradingView`.
+Like normal CSS, you can override the in-app styles with more specifically targeted rules.  In general, if you add `.svelte-app-main` to the front of a css rule, you can control the app styles.  Example:
+
+```
+.svelte-app-main header > .ticker-frame {
+    top: 70px;
+    overflow: hidden;
+    background: #140A45;
+    border-color: rgb(50, 10, 110);
+}
+```
+
+In the `index.html` file, The field `data-height-offset` can be set to tell the app how to calculate the height of the table.  The table wants to use all the available height, but won't scroll off the bottom of the page, unless the page is rather small (nested scrollers are annoying).  So if you add a header to the top of the page, you can tell the app how much height it takes, with `data-height-offset`.
+
+```
+<div id="star-atlas-dashboard" data-height-offset="100"></div>
+```
+
+### Global stuff -- JS
+
+The project sometimes loads https://s3.tradingview.com/tv.js which mounts a global JS function at `window.TradingView`.
 
 ## Build and Develop
 
