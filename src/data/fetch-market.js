@@ -375,14 +375,25 @@ export const getPrices = () => {
     ws = new WebSocket('wss://serum-vial.staratlas.cloud/v1/ws');
     ws.onmessage = updatePrices;
 
-    ws.onopen = () => {
-        // subscribe both to trades and level2 real-time channels
-        for (const ship of shipList) {
+    const shipsToGet = [ ...shipList ];
+
+    const getNextShip = () => {
+        if (shipsToGet.length) {
+            const ship = shipsToGet.shift();
             for (const market of ship.markets) {
-                // ws.send(JSON.stringify({ ...baseTrade, markets: [market.id] }));
                 ws.send(JSON.stringify({ ...baseL2, markets: [market.id] }));
             }
+            callNext();
         }
     };
+
+    const callNext = () => { 
+        // THE 'wss://serum-vial.staratlas.cloud/v1/ws' ENDPOINT 
+        // ALLOWS ONLY 50 CONNECTIONS PER SECOND, SO WE THROTTLE
+        // TO 40 REQUESTS PER SECOND TO BE SAFE
+        setTimeout(getNextShip, 50);
+    };
+
+    ws.onopen = callNext;
 };
 
