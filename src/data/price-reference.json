@@ -11,6 +11,12 @@
         "hoursResupply": "2D-2H",
         "timeResupply": 180790
     },
+    "OGKAMK": {
+        "earnDailyAtlas": 33.1871,
+        "burnDailyAtlas": 7.5213,
+        "hoursResupply": "3D-3H",
+        "timeResupply": 270991
+    },
     "OGKATP": {
         "earnDailyAtlas": 360.6708,
         "burnDailyAtlas": 77.1313,
@@ -40,6 +46,12 @@
         "burnDailyAtlas": 66.5222,
         "hoursResupply": "5D-13H",
         "timeResupply": 480520
+    },
+    "FBLEUN": {
+        "earnDailyAtlas": 1.3746,
+        "burnDailyAtlas": 0.2085,
+        "hoursResupply": "1D-2H",
+        "timeResupply": 96369
     },
     "PR8": {
         "earnDailyAtlas": 433.9984,
