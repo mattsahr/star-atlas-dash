@@ -1,6 +1,7 @@
 export const assets = {
     images: {
         'thumb-220': {
+            'ARC.jpg': true,
             'CALCH.jpg': true,
             'CALEV.jpg': true,
             'CALG.jpg': true,
@@ -12,6 +13,7 @@ export const assets = {
             'FBLEGR.jpg': true,
             'FBLETR.jpg': true,
 			'FBLEUN.jpg': true,
+            'FBLLOW.jpg': true,
             'OGKAJA.jpg': true,
 			'OGKAMK.jpg': true,
             'OGKATP.jpg': true,
@@ -30,6 +32,7 @@ export const assets = {
             'VZUSOP.jpg': true
         },
         'med-720': {
+            'ARC.jpg': true,
             'CALCH.jpg': true,
             'CALEV.jpg': true,
             'CALG.jpg': true,
@@ -41,6 +44,7 @@ export const assets = {
             'FBLEGR.jpg': true,
             'FBLETR.jpg': true,
 			'FBLEUN.jpg': true,
+            'FBLLOW.jpg': true,
             'OGKAJA.jpg': true,
 			'OGKAMK.jpg': true,
             'OGKATP.jpg': true,
