@@ -1,4 +1,16 @@
 {
+    "ARC": {
+        "earnDailyAtlas": 516.4430,
+        "burnDailyAtlas": 59.06947,
+        "hoursResupply": "4D-9H",
+        "timeResupply": 381381
+    },
+    "FBLLOW": {
+        "earnDailyAtlas": 3.2953,
+        "burnDailyAtlas": 1.2957,
+        "hoursResupply": "1D-16H",
+        "timeResupply": 146504
+    },
     "VZUSOP": {
         "earnDailyAtlas": 69.5131,
         "burnDailyAtlas": 13.9578,
