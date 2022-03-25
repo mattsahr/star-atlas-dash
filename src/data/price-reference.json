@@ -172,5 +172,17 @@
         "burnDailyAtlas": 7.4495,
         "hoursResupply": "4D-8H",
         "timeResupply": 377091
+    },
+    "VZUSBA": {
+        "earnDailyAtlas": 1281.9997,
+        "burnDailyAtlas": 172.479,
+        "hoursResupply": "6D-22H",
+        "timeResupply": 599843
+    },
+    "THRILL": {
+        "earnDailyAtlas": 39.0139,
+        "burnDailyAtlas": 7.48132,
+        "hoursResupply": "3D-4H",
+        "timeResupply": 277061
     }
 }

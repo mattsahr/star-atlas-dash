@@ -29,7 +29,8 @@
 
     const calcTableHeight = (shipList, padding) => {
         const nativeHeight = (((shipList.length || 1) * 53) + 56);
-
+        return nativeHeight;
+        /*
         const tooNarrow = getDocWidth() < 760;
         const tooShort = getDocHeight() < 600;
         if (tooNarrow || tooShort) {
@@ -40,6 +41,7 @@
             (getDocHeight() - padding),
             nativeHeight
         );
+        */
     };
 
     $: verticalPadding = 126 + heightOffset;
