@@ -1,4 +1,22 @@
 {
+    "OPALBB": {
+        "earnDailyAtlas": 421.7305,
+        "burnDailyAtlas": 64.1373,
+        "hoursResupply": "4D-9H",
+        "timeResupply": 381430
+    },
+    "CALMED": {
+        "earnDailyAtlas": 37.8095,
+        "burnDailyAtlas": 6.3765,
+        "hoursResupply": "2D-18H",
+        "timeResupply": 238685
+    },
+    "CALATS": {
+        "earnDailyAtlas": 104.9916,
+        "burnDailyAtlas": 24.2263,
+        "hoursResupply": "4D-4H",
+        "timeResupply": 361624
+    },
     "ARC": {
         "earnDailyAtlas": 516.4430,
         "burnDailyAtlas": 59.06947,

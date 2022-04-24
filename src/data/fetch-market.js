@@ -372,7 +372,7 @@ export const getPrices = () => {
     updateTokenPrices();
     setInterval(updateTokenPrices, oneMinute);
 
-    ws = new WebSocket('wss://serum-vial.staratlas.cloud/v1/ws');
+    ws = new WebSocket('wss://serum-vial.prod.staratlas.one/v1/ws');
     ws.onmessage = updatePrices;
 
     const shipsToGet = [ ...shipList ];
@@ -388,7 +388,7 @@ export const getPrices = () => {
     };
 
     const callNext = () => { 
-        // THE 'wss://serum-vial.staratlas.cloud/v1/ws' ENDPOINT 
+        // THE 'wss://serum-vial.prod.staratlas.one/v1/ws' ENDPOINT 
         // ALLOWS ONLY 50 CONNECTIONS PER SECOND, SO WE THROTTLE
         // TO 40 REQUESTS PER SECOND TO BE SAFE
         setTimeout(getNextShip, 50);
